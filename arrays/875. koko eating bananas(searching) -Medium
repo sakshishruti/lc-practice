@@ -28,6 +28,44 @@ public:
 		}
 		return res;
 	}
+};    //Time Exceeded
+
+
+Binary Search :
+
+class Solution {
+public:
+    bool f(int m, vector<int>& arr,int h){
+		int cnt = 0;
+		int n = arr.size();
+		for(int i=0; i<n; i++){
+
+			if(arr[i]%m==0){
+				cnt += arr[i]/m;
+			}else{
+				cnt += (arr[i]/m) + 1;	
+			}
+			if(cnt > h){
+				return false;
+                
+			}
+		}
+		return true;
+	}
+	int minEatingSpeed(vector<int>& arr, int h) {
+		sort(arr.begin(), arr.end());
+		int n = arr.size();
+		int res = -1;
+        int l=1, r=arr[n-1];
+		while(l<=r){
+            int m = (l+r)/2;
+			if(f(m,arr,h)){res = m; r = m-1;}
+            else{ l = m+1;}
+		}
+		return res;
+	}
 };
+
+    
 
     
